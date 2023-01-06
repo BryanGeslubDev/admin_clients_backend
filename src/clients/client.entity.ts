@@ -30,11 +30,11 @@ export class Clients extends Model {
   lastname: string;
 
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
     comment: 'edad de cliente',
   })
-  age: string;
+  age: number;
 
   @Column({
     type: DataType.STRING,
