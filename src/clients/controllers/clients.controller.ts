@@ -6,10 +6,10 @@ import {
   Post,
   Put,
   Delete,
-} from '@nestjs/common';
-import { ClientsService } from '../services/clients.service';
+} from "@nestjs/common";
+import { ClientsService } from "../services/clients.service";
 
-@Controller('api/clients')
+@Controller("api/clients")
 export class ClientsController {
   constructor(private clientsService: ClientsService) {}
 
@@ -18,23 +18,24 @@ export class ClientsController {
     return this.clientsService.findAll();
   }
 
-  @Get(':id')
-  getOne(@Param('id') id: number) {
+  @Get(":id")
+  getOne(@Param("id") id: number) {
     return this.clientsService.findOne(id);
   }
 
+  // TODO cambiar any
   @Post()
   create(@Body() body: any) {
     return this.clientsService.create(body);
   }
 
-  @Put(':id')
-  update(@Param('id') id: number) {
+  @Put(":id")
+  update(@Param("id") id: number) {
     return this.clientsService.update(id);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number) {
+  @Delete(":id")
+  delete(@Param("id") id: number) {
     return this.clientsService.delete(id);
   }
 }
