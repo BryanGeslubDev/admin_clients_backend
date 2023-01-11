@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { Clients } from '../client.entity';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/sequelize";
+import { Clients } from "../client.entity";
 
 @Injectable()
 export class ClientsService {
   constructor(
     @InjectModel(Clients)
-    private ClientsModel: typeof Clients,
+    private ClientsModel: typeof Clients
   ) {}
 
   findAll() {
@@ -17,6 +17,7 @@ export class ClientsService {
     return this.ClientsModel.findByPk(id);
   }
 
+  // TODO cambiar any
   async create(body: any) {
     const newClient = await this.ClientsModel.create(body);
     return this.ClientsModel.findByPk(newClient.id);
