@@ -13,28 +13,28 @@ export class Clients extends Model {
     allowNull: false,
     comment: 'id de cliente',
   })
-  id: string;
+  id: number;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
     comment: 'nombre de cliente',
   })
-  name: string;
+  firstName: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
     comment: 'apellido de cliente',
   })
-  lastname: string;
+  lastName: string;
 
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.STRING,
     allowNull: false,
     comment: 'edad de cliente',
   })
-  age: number;
+  age: string;
 
   @Column({
     type: DataType.STRING,

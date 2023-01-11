@@ -1,7 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Dialect } from 'sequelize';
-import { Clients } from 'src/clients/client.entity';
 import { DATABASE } from 'src/config';
 
 @Global()

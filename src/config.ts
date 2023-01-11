@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const {
-  PORT = 3000,
+  PORT = 4000,
   HOST = 'localhost',
   ADMIN_CLIENT_PORT = 5432,
   USER = 'postgres',

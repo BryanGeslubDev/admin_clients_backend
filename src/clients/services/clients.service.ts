@@ -18,16 +18,12 @@ export class ClientsService {
   }
 
   async create(body: any) {
+    console.log('aa', body);
     const newClient = await this.ClientsModel.create(body);
     return this.ClientsModel.findByPk(newClient.id);
   }
 
-  async update(id: number) {
-    const updateClient = await this.ClientsModel.findByPk(id);
-    const { ...client } = updateClient;
-
-    await updateClient.update(client);
-
+  update(id: Clients['id']) {
     return this.ClientsModel.findByPk(id);
   }
 

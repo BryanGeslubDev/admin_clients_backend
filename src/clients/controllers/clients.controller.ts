@@ -6,7 +6,10 @@ import {
   Post,
   Put,
   Delete,
+  Res,
 } from '@nestjs/common';
+import { api_error } from 'src/utils/errors/controllerError';
+import { Clients } from '../client.entity';
 import { ClientsService } from '../services/clients.service';
 
 @Controller('api/clients')
@@ -14,8 +17,20 @@ export class ClientsController {
   constructor(private clientsService: ClientsService) {}
 
   @Get()
-  getAll() {
-    return this.clientsService.findAll();
+  async getAll(@Res() res) {
+    try {
+      const clients = await this.clientsService.findAll();
+      console.log('Devolvemos todo');
+      return res.json({
+        message: `Clientes encontrados: ${clients.length}`,
+        data: clients,
+      });
+    } catch (e) {
+      console.log('error', e);
+      res.status(500).json({
+        message: api_error,
+      });
+    }
   }
 
   @Get(':id')
@@ -24,12 +39,17 @@ export class ClientsController {
   }
 
   @Post()
-  create(@Body() body: any) {
+  create(@Body() body: Clients) {
+    console.log('body', body);
     return this.clientsService.create(body);
   }
 
   @Put(':id')
-  update(@Param('id') id: number) {
+  async update(@Param('id') id: number, @Body() body: Clients) {
+    const updateClient = await this.clientsService.findOne(id);
+    console.log(body);
+
+    await updateClient.update(body);
     return this.clientsService.update(id);
   }
 
