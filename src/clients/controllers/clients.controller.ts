@@ -11,6 +11,7 @@ import {
 import { api_error } from 'src/utils/errors/controllerError';
 import { Clients } from '../client.entity';
 import { ClientsService } from '../services/clients.service';
+import { ClientDto } from '../dto/create-client.dto';
 
 @Controller('api/clients')
 export class ClientsController {
@@ -39,8 +40,7 @@ export class ClientsController {
   }
 
   @Post()
-  create(@Body() body: Clients) {
-    console.log('body', body);
+  create(@Body() body: ClientDto) {
     return this.clientsService.create(body);
   }
 
